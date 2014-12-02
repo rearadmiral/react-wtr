@@ -1,38 +1,4 @@
 body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
-}
-
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
-}
-
-.hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-}
-
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
-
-// bower:scss
-// endbower
-
-body {
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -164,5 +130,28 @@ footer {
     text-align: right;
     margin-left: 2em;
     display: inline-block;
+  }
+}
+
+.books {
+  .book {
+    padding: 10px;
+    img {
+      max-width: 100px;
+      max-height: 100px;
+      border: 2px solid black;
+      margin: 10px;
+      float: left;
+    }
+
+    .author {
+      font-style: italic;
+      font-size: small;
+    }
+
+    .firstLine {
+      font-style: italic;
+      font-size: x-small;      
+    }
   }
 }

@@ -1,16 +1,10 @@
 /** @jsx React.DOM */
 'use strict';
-define([], function () {
+define(['books'], function (Books) {
 	return React.createClass({
-		getInitialState: function() {
-			return {message: 'Hello World!'};
-		},
-		goodbye: function(event) {
-			this.setState({message: 'Goodbye World.'});
-		},
 		render: function() {
 			return (
-				React.DOM.h1( {onClick:this.goodbye}, this.state.message)
+				Books(null)
 			);
 		}
 	});
