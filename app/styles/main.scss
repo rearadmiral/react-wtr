@@ -151,7 +151,34 @@ footer {
 
     .firstLine {
       font-style: italic;
-      font-size: x-small;      
+      font-size: x-small;
     }
   }
+}
+
+.wtr__shelfDropdown {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAPCAYAAAACsSQRAAAAjUlEQVR42p2ToQ7AIAwF0dOzaPT0NBY9jcZOT0/X8q+sSxDk5SFKkwuhbQ6agGutMUSpHcE6MivUEaehq1eSUhTvhpidWoEI+4ySCrBcgr2sSA6S81bJxm5nkvS+G/LPiiSxG1olgfSeJgk+h05ekRSoyYokkv5gleyk/zJJuuiFepn9HcG5yUi3Ev7cB8bg8DKDbrrDAAAAAElFTkSuQmCC");
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 27px;
+  height: 34px;
+}
+
+.wtr__deleteShelvingButton {
+  background-color: #cc0000;
+  color: white;
+}
+
+.wtr__lhs--shelved::before {
+  content: '✔ ';
+}
+
+.wtr__lhs--shelved, .wtr__lhs--shelved:hover, .wtr__lhs--shelved:active {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+.wtr__lhs--unshelved, .wtr__lhs--unshelved:hover, .wtr__lhs--unshelved:active {
+  background-color: green;
+  border-color: green;
 }
