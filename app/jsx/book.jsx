@@ -6,12 +6,27 @@ define(['want-to-read'], function (WantToRead) {
       var book = this.props.book;
       return (
         <div className="book">
+
           <img src={book.coverImgUrl}></img>
-          <a href="#">{book.title}</a>
-          by <span className="author">{book.author}</span>
+
+          <div>
+            <a href="#">
+              {book.title}
+            </a>
+          </div>
+
+          <div>
+            by <span className="author">{book.author}</span>
+          </div>
+
           <WantToRead book={book} />
-          <p className="firstLine">{book.firstLine}</p>
+
+          <p className="firstLine">
+            {book.firstLine}
+          </p>
+          
           <div className="clear"></div>
+
         </div>
       );
     }

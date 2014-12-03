@@ -1,69 +1,41 @@
 /** @jsx React.DOM */
 'use strict';
-define(['shelf'], function (Shelf) {
+define(['shelf','underscore'], function (Shelf, _) {
   return React.createClass({
     getInitialState: function() {
       return {
-        groupName: "shelfGroup" + new Date().getTime(),
-        shelves: [
-          {
-            id: 1,
-            name: 'Want to Read',
-            exclusive: true
-          },
-          {
-            id: 2,
-            name: 'Read',
-            exclusive: true
-          },
-          {
-            id: 3,
-            name: 'Currently Reading',
-            exclusive: true
-          },
-          {
-            id: 4,
-            name: 'Fiction',
-            exclusive: false
-          },
-          {
-            id: 5,
-            name: 'Non-Fiction',
-            exclusive: false
-          },
-          {
-            id: 6,
-            name: 'Own',
-            exclusive: false
-          }
-        ]
+        groupName: 'shelfGroup' + new Date().getTime()
       };
     },
-    isShelved: function() {
+    hasAnyShelvings: function() {
       return false;
+    },
+    isShelved: function(shelf) {
+      return _.contains(this.props.shelvings, shelf.id);
     },
     unshelve: function() {
       this.setState({shelved: false});
     },
     unshelveButton: function() {
       return (
-        <button className="btn wtr__deleteShelvingButton" click={this.unshelve} >
+        <button className='btn wtr__deleteShelvingButton' click={this.unshelve} >
           Remove from all shelves
         </button>
       );
     },
+
     shelves: function() {
       var self = this;
-      return this.state.shelves.map(function(shelf){
+      return this.props.shelves.map(function(shelf){
         return (
-          <Shelf shelf={shelf} groupName={self.state.groupName} />
+          <Shelf shelf={shelf} shelved={self.isShelved(shelf)} groupName={self.state.groupName} />
         );
       });
     },
     render: function() {
       return (
-        <div class="wtr__shelfList">
-          { this.isShelved() ? this.unshelveButton() : null }
+        <div className='wtr__shelfList'>
+          { this.hasAnyShelvings() ? this.unshelveButton() : null }
           { this.shelves() }
         </div>
       );

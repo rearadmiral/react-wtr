@@ -4,7 +4,10 @@
 require.config({
 	baseUrl: 'scripts',
 	paths: {
-		react: 'script/react.min'
+		react: '../bower_components/react/react',
+		almond: '../bower_components/almond/almond',
+		requirejs: '../bower_components/requirejs/require',
+		underscore: '../bower_components/underscore/underscore'
 	},
 	shim: {
 		react: {

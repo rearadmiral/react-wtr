@@ -2,19 +2,18 @@
 'use strict';
 define([], function () {
   return React.createClass({
-    getInitialState: function() {
-      return {
-        shelved: false
-      };
+    toggle: function() {
+      // var currentState = this.state.shelved;
+      // this.setState({shelved: !currentState});
     },
     inputElement: function() {
       if (this.props.shelf.exclusive) {
         return (
-          <input type="radio" name={this.props.groupName} checked={this.state.shelved} />
+          <input type="radio" checked={this.props.shelved} name={this.props.groupName} value={this.props.shelf.id} onChange={this.toggle} />
         );
       } else {
         return (
-          <input type="checkbox" checked={this.state.shelved} />
+          <input type="checkbox" checked={this.props.shelved} value={this.props.shelf.id} onChange={this.toggle} />
         );
       }
     },
