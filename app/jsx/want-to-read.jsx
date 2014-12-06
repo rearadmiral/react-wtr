@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 'use strict';
-define(['shelf-list', 'underscore'], function (ShelfList, _) {
+define(['shelf-list', 'underscore', 'shelf-model'], function (ShelfList, _, ShelfModel) {
   return React.createClass({
     getInitialState: function() {
       return {
         shelvesVisible: false,
-        shelves: this.cannedShelvesData(),
+        shelves: ShelfModel.all(),
         shelfIds: this.props.book.shelves
       };
     },
@@ -59,7 +59,7 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
       this.onShelve(this.primaryShelf());
     },
     primaryShelf: function() {
-      return _(this.cannedShelvesData()).findWhere({name: 'Want to Read'});
+      return _(ShelfModel.all()).findWhere({name: 'Want to Read'});
     },
     primaryButtonName: function() {
       var exclusiveShelf = this.exclusiveShelf();
@@ -90,40 +90,6 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
           { this.state.shelvesVisible ? this.renderShelfList(this) : '' }
         </div>
       );
-    },
-    cannedShelvesData: function() {
-      return [
-        {
-          id: 1,
-          name: 'Want to Read',
-          exclusive: true
-        },
-        {
-          id: 2,
-          name: 'Read',
-          exclusive: true
-        },
-        {
-          id: 3,
-          name: 'Currently Reading',
-          exclusive: true
-        },
-        {
-          id: 4,
-          name: 'Fiction',
-          exclusive: false
-        },
-        {
-          id: 5,
-          name: 'Non-Fiction',
-          exclusive: false
-        },
-        {
-          id: 6,
-          name: 'Own',
-          exclusive: false
-        }
-      ];
     }
   });
 });
