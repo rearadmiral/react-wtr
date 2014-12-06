@@ -2,7 +2,7 @@
 'use strict';
 define([], function () {
   return React.createClass({
-    toggle: function() {
+    onShelvingChange: function() {
       if (!this.props.shelved) {
         this.props.onShelve();
       } else if (this.props.shelved) {
@@ -12,11 +12,11 @@ define([], function () {
     inputElement: function() {
       if (this.props.shelf.exclusive) {
         return (
-          <input type="radio" checked={this.props.shelved} name={this.props.groupName} value={this.props.shelf.id} onChange={this.toggle} />
+          <input type="radio" checked={this.props.shelved} name={this.props.groupName} value={this.props.shelf.id} onChange={this.onShelvingChange} />
         );
       } else {
         return (
-          <input type="checkbox" checked={this.props.shelved} value={this.props.shelf.id} onChange={this.toggle} />
+          <input type="checkbox" checked={this.props.shelved} value={this.props.shelf.id} onChange={this.onShelvingChange} />
         );
       }
     },

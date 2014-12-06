@@ -8,14 +8,14 @@ define(['shelf','underscore'], function (Shelf, _) {
       };
     },
     hasAnyShelvings: function() {
-      return false;
+      return !_.isEmpty(this.props.shelvings);
     },
     isOnShelf: function(shelf) {
       return _.chain(this.props.shelvings).pluck('id').contains(shelf.id).value();
     },
     unshelveButton: function() {
       return (
-        <button className='btn wtr__deleteShelvingButton' >
+        <button className='btn wtr__deleteShelvingButton' onClick={this.props.onClearShelvings} >
           Remove from all shelves
         </button>
       );

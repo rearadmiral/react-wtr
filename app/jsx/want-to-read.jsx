@@ -9,8 +9,8 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
         shelfIds: this.props.book.shelves
       };
     },
-    showShelves: function() {
-      this.setState({shelvesVisible: true});
+    toggleShelvesVisibility: function() {
+      this.setState({shelvesVisible: !this.state.shelvesVisible});
     },
     isShelved: function() {
       return !_.isEmpty(this.state.shelfIds);
@@ -36,7 +36,7 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
     onShelve: function(shelf) {
       var shelfIds = this.state.shelfIds;
 
-      if (shelf.exclusive) {
+      if (shelf.exclusive && this.exclusiveShelf()) {
         shelfIds = _(shelfIds).without(this.exclusiveShelf().id);
       }
       this.setState({
@@ -44,16 +44,33 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
       });
 
     },
+    onClearShelvings: function() {
+      this.setState({
+        shelfIds: [],
+        shelvesVisible: false
+      });
+    },
+    onShelveOnPrimaryShelf: function() {
+      if (this.exclusiveShelf()) {
+        this.onClearShelvings();
+        return;
+      }
+
+      this.onShelve(this.primaryShelf());
+    },
+    primaryShelf: function() {
+      return _(this.cannedShelvesData()).findWhere({name: 'Want to Read'});
+    },
     primaryButtonName: function() {
       var exclusiveShelf = this.exclusiveShelf();
       if (exclusiveShelf) {
         return exclusiveShelf.name;
       }
-      return 'Want to Read';
+      return this.primaryShelf().name;
     },
     renderShelfList: function() {
       return (
-        <ShelfList shelves={this.state.shelves} shelvings={this.shelves()} onUnshelve={this.onUnshelve} onShelve={this.onShelve} />
+        <ShelfList shelves={this.state.shelves} shelvings={this.shelves()} onUnshelve={this.onUnshelve} onShelve={this.onShelve} onClearShelvings={this.onClearShelvings} />
       );
     },
     render: function() {
@@ -61,13 +78,13 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
       return (
         <div>
           <button
-            className={ this.isShelved() ? 'wtr__lhs--shelved' : 'wtr__lhs--unshelved' }>
+            className={ this.isShelved() ? 'wtr__lhs--shelved' : 'wtr__lhs--unshelved' } onClick={this.onShelveOnPrimaryShelf} >
             {this.primaryButtonName()}
           </button>
 
           <button
               className='btn btn-success wtr__shelfDropdown'
-              onClick={this.showShelves} >
+              onClick={this.toggleShelvesVisibility} >
           </button>
 
           { this.state.shelvesVisible ? this.renderShelfList(this) : '' }
