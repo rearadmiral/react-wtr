@@ -25,9 +25,8 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
       return _(this.shelves()).findWhere({ exclusive: true });
     },
     onUnshelve: function(shelf) {
-      console.log('[DEBUG]: unshelving shelf ' + JSON.stringify(shelf));
-      if (shelf.exclusive) {
-        return false;
+      if (_.isUndefined(shelf) || shelf.exclusive) {
+        return;
       }
 
       this.setState({
@@ -35,9 +34,15 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
       });
     },
     onShelve: function(shelf) {
+      var shelfIds = this.state.shelfIds;
+
+      if (shelf.exclusive) {
+        shelfIds = _(shelfIds).without(this.exclusiveShelf().id);
+      }
       this.setState({
-        shelfIds: this.state.shelfIds.concat(shelf.id)
+        shelfIds: shelfIds.concat(shelf.id)
       });
+
     },
     primaryButtonName: function() {
       var exclusiveShelf = this.exclusiveShelf();
