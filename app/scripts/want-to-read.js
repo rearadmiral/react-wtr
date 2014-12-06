@@ -6,28 +6,38 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
       return {
         shelvesVisible: false,
         shelves: this.cannedShelvesData(),
-        shelvings: this.props.book.shelves
+        shelfIds: this.props.book.shelves
       };
     },
     showShelves: function() {
       this.setState({shelvesVisible: true});
     },
-    shelfList: function() {
-      return (
-        ShelfList( {shelves:this.state.shelves, shelvings:this.state.shelvings} )
-      );
-    },
     isShelved: function() {
-      return !_.isEmpty(this.state.shelvings);
+      return !_.isEmpty(this.state.shelfIds);
     },
     shelves: function() {
-      var self = this;
-      return _.map(this.state.shelvings, function(shelfId){
-        return self.shelvesById()[shelfId];
+      var shelves = this.state.shelves
+      return _(this.state.shelfIds).map(function(shelvingShelfId){
+        return _(shelves).findWhere({ id: shelvingShelfId });
       });
     },
     exclusiveShelf: function() {
-      return _.findWhere(this.shelves(), { exclusive: true });
+      return _(this.shelves()).findWhere({ exclusive: true });
+    },
+    onUnshelve: function(shelf) {
+      console.log('[DEBUG]: unshelving shelf ' + JSON.stringify(shelf));
+      if (shelf.exclusive) {
+        return false;
+      }
+
+      this.setState({
+        shelfIds: _(this.state.shelfIds).without(shelf.id)
+      });
+    },
+    onShelve: function(shelf) {
+      this.setState({
+        shelfIds: this.state.shelfIds.concat(shelf.id)
+      });
     },
     primaryButtonName: function() {
       var exclusiveShelf = this.exclusiveShelf();
@@ -35,6 +45,11 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
         return exclusiveShelf.name;
       }
       return 'Want to Read';
+    },
+    renderShelfList: function() {
+      return (
+        ShelfList( {shelves:this.state.shelves, shelvings:this.shelves(), onUnshelve:this.onUnshelve, onShelve:this.onShelve} )
+      );
     },
     render: function() {
       var book = this.props.book;
@@ -50,12 +65,9 @@ define(['shelf-list', 'underscore'], function (ShelfList, _) {
               onClick:this.showShelves} 
           ),
 
-           this.state.shelvesVisible ? this.shelfList() : '' 
+           this.state.shelvesVisible ? this.renderShelfList(this) : '' 
         )
       );
-    },
-    shelvesById: function() {
-      return _.indexBy(this.cannedShelvesData(), 'id');
     },
     cannedShelvesData: function() {
       return [

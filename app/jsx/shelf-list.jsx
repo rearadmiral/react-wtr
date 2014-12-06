@@ -10,25 +10,22 @@ define(['shelf','underscore'], function (Shelf, _) {
     hasAnyShelvings: function() {
       return false;
     },
-    isShelved: function(shelf) {
-      return _.contains(this.props.shelvings, shelf.id);
-    },
-    unshelve: function() {
-      this.setState({shelved: false});
+    isOnShelf: function(shelf) {
+      return _.chain(this.props.shelvings).pluck('id').contains(shelf.id).value();
     },
     unshelveButton: function() {
       return (
-        <button className='btn wtr__deleteShelvingButton' click={this.unshelve} >
+        <button className='btn wtr__deleteShelvingButton' >
           Remove from all shelves
         </button>
       );
     },
 
-    shelves: function() {
+    shelfItems: function() {
       var self = this;
       return this.props.shelves.map(function(shelf){
         return (
-          <Shelf shelf={shelf} shelved={self.isShelved(shelf)} groupName={self.state.groupName} />
+          <Shelf shelf={shelf} shelved={self.isOnShelf(shelf)} groupName={self.state.groupName} onUnshelve={function() { self.props.onUnshelve(shelf); }} onShelve={function() { self.props.onShelve(shelf); } } />
         );
       });
     },
@@ -36,7 +33,7 @@ define(['shelf','underscore'], function (Shelf, _) {
       return (
         <div className='wtr__shelfList'>
           { this.hasAnyShelvings() ? this.unshelveButton() : null }
-          { this.shelves() }
+          { this.shelfItems() }
         </div>
       );
     }

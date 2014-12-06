@@ -3,8 +3,11 @@
 define([], function () {
   return React.createClass({
     toggle: function() {
-      // var currentState = this.state.shelved;
-      // this.setState({shelved: !currentState});
+      if (!this.props.shelved) {
+        this.props.onShelve();
+      } else if (this.props.shelved) {
+        this.props.onUnshelve();
+      }
     },
     inputElement: function() {
       if (this.props.shelf.exclusive) {
