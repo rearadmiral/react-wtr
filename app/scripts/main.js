@@ -7,7 +7,9 @@ require.config({
 		react: '../bower_components/react/react',
 		almond: '../bower_components/almond/almond',
 		requirejs: '../bower_components/requirejs/require',
-		underscore: '../bower_components/underscore/underscore'
+		underscore: '../bower_components/underscore/underscore',
+		backbone: '../bower_components/backbone/backbone',
+		jquery: '../bower_components/jquery/dist/jquery'
 	},
 	shim: {
 		react: {

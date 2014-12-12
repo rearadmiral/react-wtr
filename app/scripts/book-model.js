@@ -1,9 +1,7 @@
 'use strict';
-define([], function() {
+define(['backbone'], function(Backbone) {
 
-
-  var all = function() {
-    return [
+  var cannedData = [
       {
         id: 1,
         title:
@@ -28,11 +26,17 @@ define([], function() {
         author: 'Stephen Hawking',
         shelves: []
       }
-    ];
-  };
+  ];
 
+  var modelClass = Backbone.Model.extend({
+    //nothing yet
+  }, {
 
-  return {
-    all: all
-  };
+    all: function() {
+      return cannedData;
+    }
+
+  });
+
+  return modelClass;
 });

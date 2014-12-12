@@ -6,7 +6,9 @@
     "almond": "latest",
     "modernizr": "~2.6.2",
     "react": "~0.5.1",
-    "underscore": "*"
+    "underscore": "latest",
+    "backbone": "latest",
+    "jquery": "latest"
   },
   "devDependencies": {}
 }
