@@ -7,16 +7,16 @@ define(['want-to-read'], function (WantToRead) {
       return (
         React.DOM.div( {className:"book"}, 
 
-          React.DOM.img( {src:book.coverImgUrl}),
+          React.DOM.img( {src:book.get('coverImgUrl')}),
 
           React.DOM.div(null, 
             React.DOM.a( {href:"#"}, 
-              book.title
+              book.get('title')
             )
           ),
 
           React.DOM.div(null, 
-            " by ", React.DOM.span( {className:"author"}, book.author)
+            " by ", React.DOM.span( {className:"author"}, book.get('author'))
           ),
 
           WantToRead( {book:book} ),
