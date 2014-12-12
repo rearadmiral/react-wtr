@@ -5,6 +5,8 @@ Run it
 
    > $> bundle
 
+   > $> rake db:setup
+
    > $> rails s
 
    > $> cd ../
