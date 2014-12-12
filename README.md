@@ -2,9 +2,11 @@ Run it
 ======
 
 
-   > npm install
-   > bower install
-   > grunt serve
+   > $> npm install
+   
+   > $> bower install
+   
+   > $> grunt serve
 
 
  Bam!
