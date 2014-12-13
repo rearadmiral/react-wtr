@@ -10,13 +10,13 @@ define([], function () {
       }
     },
     inputElement: function() {
-      if (this.props.shelf.exclusive) {
+      if (this.props.shelf.get('exclusive')) {
         return (
-          React.DOM.input( {type:"radio", checked:this.props.shelved, name:this.props.groupName, value:this.props.shelf.id, onChange:this.onShelvingChange} )
+          React.DOM.input( {type:"radio", checked:this.props.shelved, name:this.props.groupName, value:this.props.shelf.get('id'), onChange:this.onShelvingChange} )
         );
       } else {
         return (
-          React.DOM.input( {type:"checkbox", checked:this.props.shelved, value:this.props.shelf.id, onChange:this.onShelvingChange} )
+          React.DOM.input( {type:"checkbox", checked:this.props.shelved, value:this.props.shelf.get('id'), onChange:this.onShelvingChange} )
         );
       }
     },
@@ -25,7 +25,7 @@ define([], function () {
         React.DOM.div(null, 
           React.DOM.label(null, 
             this.inputElement(),
-            this.props.shelf.name
+            this.props.shelf.get('name')
           )
         )
       );

@@ -1,7 +1,19 @@
-'use strict';
-define(['backbone', 'underscore'], function(Backbone, _) {
+  'use strict';
+define(['backbone', 'underscore', 'shelf-model'], function(Backbone, _, ShelfModel) {
 
-  var modelClass = Backbone.Model.extend({
+  var modelClass = Backbone.AssociatedModel.extend({
+    relations: [
+      {
+        type: Backbone.Many,
+        key: 'shelves', 
+        collectionType: ShelfModel.collectionClass,
+        map: function(shelfIds) {
+          return shelfIds.map(function(shelfId){
+            return ShelfModel.all().findWhere({ id: shelfId });
+          });
+        }
+      }
+    ]
 
   });
 
@@ -10,8 +22,11 @@ define(['backbone', 'underscore'], function(Backbone, _) {
     url: 'http://localhost:3000/books'
   });
 
+  var instance = new collectionClass();
+
   return {
-    model: modelClass,
-    collection: collectionClass
+    all: function() {
+      return instance;
+    }
   };
 });

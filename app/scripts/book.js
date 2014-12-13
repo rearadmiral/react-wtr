@@ -3,6 +3,7 @@
 define(['want-to-read'], function (WantToRead) {
   return React.createClass({
     render: function() {
+      var shelves = this.props.shelves;
       var book = this.props.book;
       return (
         React.DOM.div( {className:"book"}, 
@@ -19,7 +20,7 @@ define(['want-to-read'], function (WantToRead) {
             " by ", React.DOM.span( {className:"author"}, book.get('author'))
           ),
 
-          WantToRead( {book:book} ),
+          WantToRead( {book:book, shelves:shelves} ),
 
           React.DOM.p( {className:"firstLine"}, 
             book.firstLine

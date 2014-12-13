@@ -1,12 +1,10 @@
 /** @jsx React.DOM */
 'use strict';
-define(['shelf-list', 'underscore', 'shelf-model'], function (ShelfList, _, ShelfModel) {
+define(['shelf-list', 'underscore', 'stores'], function (ShelfList, _, Stores) {
   return React.createClass({
     getInitialState: function() {
       return {
-        shelvesVisible: false,
-        shelves: ShelfModel.all(),
-        shelfIds: this.props.book.shelves
+        shelvesVisible: false
       };
     },
     toggleShelvesVisibility: function() {
@@ -16,37 +14,19 @@ define(['shelf-list', 'underscore', 'shelf-model'], function (ShelfList, _, Shel
       return !_.isEmpty(this.state.shelfIds);
     },
     shelves: function() {
-      var shelves = this.state.shelves
-      return _(this.state.shelfIds).map(function(shelvingShelfId){
-        return _(shelves).findWhere({ id: shelvingShelfId });
-      });
+      return this.props.book.get('shelves');
     },
     exclusiveShelf: function() {
-      return _(this.shelves()).findWhere({ exclusive: true });
+      return this.props.shelves.findWhere({ exclusive: true });
     },
     onUnshelve: function(shelf) {
-      if (_.isUndefined(shelf) || shelf.exclusive) {
-        return;
-      }
 
-      this.setState({
-        shelfIds: _(this.state.shelfIds).without(shelf.id)
-      });
     },
     onShelve: function(shelf) {
-      var shelfIds = this.state.shelfIds;
-
-      if (shelf.exclusive && this.exclusiveShelf()) {
-        shelfIds = _(shelfIds).without(this.exclusiveShelf().id);
-      }
-      this.setState({
-        shelfIds: shelfIds.concat(shelf.id)
-      });
-
+  
     },
     onClearShelvings: function() {
       this.setState({
-        shelfIds: [],
         shelvesVisible: false
       });
     },
@@ -59,18 +39,18 @@ define(['shelf-list', 'underscore', 'shelf-model'], function (ShelfList, _, Shel
       this.onShelve(this.primaryShelf());
     },
     primaryShelf: function() {
-      return _(ShelfModel.all()).findWhere({name: 'Want to Read'});
+      return this.props.shelves.findWhere({name: 'Want to Read'});
     },
     primaryButtonName: function() {
       var exclusiveShelf = this.exclusiveShelf();
       if (exclusiveShelf) {
-        return exclusiveShelf.name;
+        return exclusiveShelf.get('name');
       }
-      return this.primaryShelf().name;
+      return this.primaryShelf().get('name');
     },
     renderShelfList: function() {
       return (
-        ShelfList( {shelves:this.state.shelves, shelvings:this.shelves(), onUnshelve:this.onUnshelve, onShelve:this.onShelve, onClearShelvings:this.onClearShelvings} )
+        ShelfList( {shelves:this.props.shelves, shelvings:this.shelves(), onUnshelve:this.onUnshelve, onShelve:this.onShelve, onClearShelvings:this.onClearShelvings} )
       );
     },
     render: function() {
@@ -87,7 +67,7 @@ define(['shelf-list', 'underscore', 'shelf-model'], function (ShelfList, _, Shel
               onClick:this.toggleShelvesVisibility} 
           ),
 
-           this.state.shelvesVisible ? this.renderShelfList(this) : '' 
+           this.state.shelvesVisible ? this.renderShelfList() : '' 
         )
       );
     }

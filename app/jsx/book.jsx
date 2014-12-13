@@ -3,6 +3,7 @@
 define(['want-to-read'], function (WantToRead) {
   return React.createClass({
     render: function() {
+      var shelves = this.props.shelves;
       var book = this.props.book;
       return (
         <div className="book">
@@ -19,7 +20,7 @@ define(['want-to-read'], function (WantToRead) {
             by <span className="author">{book.get('author')}</span>
           </div>
 
-          <WantToRead book={book} />
+          <WantToRead book={book} shelves={shelves} />
 
           <p className="firstLine">
             {book.firstLine}

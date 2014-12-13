@@ -9,6 +9,7 @@ require.config({
 		requirejs: '../bower_components/requirejs/require',
 		underscore: '../bower_components/underscore/underscore',
 		backbone: '../bower_components/backbone/backbone',
+		backboneAssociations: '../bower_components/backbone-associations/backbone-associations',
 		jquery: '../bower_components/jquery/dist/jquery'
 	},
 	shim: {
@@ -18,7 +19,7 @@ require.config({
 	}
 });
 
-require(['app', 'stats'], function (App, Stats) {
+require(['app', 'stats', 'backboneAssociations'], function (App, Stats, BackboneAssociations) {
 	React.renderComponent(
 		App(null ),
 		document.getElementById('react-app')

@@ -1,44 +1,21 @@
 'use strict';
-define([], function() {
+define(['backbone', 'underscore'], function(Backbone, _) {
 
-  var all = function() {
-    return [
-    {
-      id: 1,
-      name: 'Want to Read',
-      exclusive: true
-    },
-    {
-      id: 2,
-      name: 'Read',
-      exclusive: true
-    },
-    {
-      id: 3,
-      name: 'Currently Reading',
-      exclusive: true
-    },
-    {
-      id: 4,
-      name: 'Fiction',
-      exclusive: false
-    },
-    {
-      id: 5,
-      name: 'Non-Fiction',
-      exclusive: false
-    },
-    {
-      id: 6,
-      name: 'Own',
-      exclusive: false
-    }
-    ];
-    
-  };
+  var modelClass = Backbone.AssociatedModel.extend({});
+
+  var collectionClass = Backbone.Collection.extend({
+    model: modelClass,
+    url: 'http://localhost:3000/shelves'
+  });
+
+  var instance = new collectionClass();
 
   return {
-    all: all
+    modelClass: modelClass,
+    collectionClass: collectionClass,
+    all: function() {
+      return instance;
+    }
   };
 
 });

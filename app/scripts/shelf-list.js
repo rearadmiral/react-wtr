@@ -8,10 +8,10 @@ define(['shelf','underscore'], function (Shelf, _) {
       };
     },
     hasAnyShelvings: function() {
-      return !_.isEmpty(this.props.shelvings);
+      return !this.props.shelvings.isEmpty();
     },
     isOnShelf: function(shelf) {
-      return _.chain(this.props.shelvings).pluck('id').contains(shelf.id).value();
+      return this.props.shelvings.findWhere({ id: shelf.get('id') }) !== undefined;
     },
     unshelveButton: function() {
       return (
