@@ -23,6 +23,7 @@ require.config({
 });
 
 require(['app', 'stats', 'backbone-associations'], function (App, Stats) {
+
 	React.renderComponent(
 		App(null ),
 		document.getElementById('react-app')

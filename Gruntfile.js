@@ -53,6 +53,10 @@ module.exports = function (grunt) {
               files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
               tasks: ['compass', 'newer:copy:styles', 'autoprefixer']
             },
+            scripts: {
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                tasks: ['copy:scripts']
+            },
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -60,7 +64,7 @@ module.exports = function (grunt) {
                 files: [
                     '<%= yeoman.app %>/*.html',
                     '<%= yeoman.tmp %>/styles/{,*/}*.css',
-                    '{<%= yeoman.tmp %>,<%= yeoman.app %>}/scripts/{,*/}*.js',
+                    '<%= yeoman.tmp %>/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
                 ]
             }
