@@ -1,10 +1,11 @@
 /** @jsx React.DOM */
 'use strict';
-define(['want-to-read'], function (WantToRead) {
-  return React.createClass({
+define(['react', 'want-to-read', 'backbone', 'react.backbone'], function (React, WantToRead, Backbone, ReactBackbone) {
+  return React.createBackboneClass({
+
     render: function() {
       var shelves = this.props.shelves;
-      var book = this.props.book;
+      var book = this.getModel();
       return (
         React.DOM.div( {className:"book"}, 
 

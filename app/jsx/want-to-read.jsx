@@ -20,10 +20,10 @@ define(['shelf-list', 'underscore', 'stores'], function (ShelfList, _, Stores) {
       return this.props.shelves.findWhere({ exclusive: true });
     },
     onUnshelve: function(shelf) {
-
+      this.props.book.removeFromShelf(shelf);
     },
     onShelve: function(shelf) {
-  
+      this.props.book.addToShelf(shelf);
     },
     onClearShelvings: function() {
       this.setState({

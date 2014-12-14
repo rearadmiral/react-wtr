@@ -7,10 +7,8 @@ define(['book', 'stores', 'underscore'], function (Book, Stores, _) {
       var shelvesStore = Stores.shelves;
       var booksStore = Stores.books;
       shelvesStore.fetch().success(function() {
-        self.setState({ shelves: shelvesStore });
-
         booksStore.fetch().success(function() {
-          self.setState({ books: booksStore });
+          self.setState({ books: booksStore, shelves: shelvesStore });
         });
       });
     },
@@ -29,7 +27,7 @@ define(['book', 'stores', 'underscore'], function (Book, Stores, _) {
       var shelves = this.state.shelves;
       return this.state.books.map(function(book) {
         return (
-          <Book book={book} shelves={shelves} />
+          <Book model={book} shelves={shelves} />
         );
       });
     },
