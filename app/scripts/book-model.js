@@ -13,15 +13,7 @@ define(['backbone', 'underscore', 'shelf-model'], function(Backbone, _, ShelfMod
           });
         }
       }
-    ],
-
-    addToShelf: function(shelf) {
-      this.get('shelves').add(shelf);
-    },
-
-    removeFromShelf: function(shelf) {
-      this.get('shelves').remove(shelf);
-    }
+    ]
 
   });
 
