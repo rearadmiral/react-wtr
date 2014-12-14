@@ -5,10 +5,11 @@
     "requirejs": "~2.1.9",
     "almond": "latest",
     "modernizr": "~2.6.2",
-    "react": "~0.5.1",
+    "react": "latest",
     "underscore": "latest",
     "backbone": "latest",
-    "backbone-associations": "0.6.2",
+    "backbone-associations": "latest",
+    "react-backbone": "latest",
     "jquery": "latest"
   },
   "devDependencies": {}

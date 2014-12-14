@@ -4,13 +4,16 @@
 require.config({
 	baseUrl: 'scripts',
 	paths: {
-		react: '../bower_components/react/react',
-		almond: '../bower_components/almond/almond',
-		requirejs: '../bower_components/requirejs/require',
-		underscore: '../bower_components/underscore/underscore',
-		backbone: '../bower_components/backbone/backbone',
-		backboneAssociations: '../bower_components/backbone-associations/backbone-associations',
-		jquery: '../bower_components/jquery/dist/jquery'
+		almond: '../../bower_components/almond/almond',
+		modernizr: '../../bower_components/modernizr/modernizr',
+		requirejs: '../../bower_components/requirejs/require',
+		underscore: '../../bower_components/underscore/underscore',
+		jquery: '../../bower_components/jquery/dist/jquery',
+		'backbone-associations': '../../bower_components/backbone-associations/backbone-associations',
+		backbone: '../../bower_components/backbone/backbone',
+		'react-backbone': '../../bower_components/react-backbone/react-backbone',
+		'react-mixin-manager': '../../bower_components/react-mixin-manager/react-mixin-manager',
+		react: '../../bower_components/react/react'
 	},
 	shim: {
 		react: {
@@ -19,7 +22,7 @@ require.config({
 	}
 });
 
-require(['app', 'stats', 'backboneAssociations'], function (App, Stats, BackboneAssociations) {
+require(['app', 'stats', 'backbone-associations'], function (App, Stats) {
 	React.renderComponent(
 		App(null ),
 		document.getElementById('react-app')
