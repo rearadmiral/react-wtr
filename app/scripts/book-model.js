@@ -24,10 +24,6 @@ define(['backbone', 'underscore', 'shelf-model'], function(Backbone, _, ShelfMod
 
   var instance = new collectionClass();
 
-  instance.on('all', function() {
-    console.log('event: ' + JSON.stringify(arguments[0]));
-  });
-
   return {
     all: function() {
       return instance;
