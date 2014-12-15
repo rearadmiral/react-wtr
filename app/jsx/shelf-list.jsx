@@ -2,24 +2,19 @@
 'use strict';
 define(['shelf','underscore'], function (Shelf, _) {
   return React.createClass({
-    mixins: ['events'],
-    events: {
-      'prop:shelves:change': 'onShelfChange'
-    },
-    onShelfChange: function(a, b) {
-      console.log('[DEBUG] a: ' + JSON.stringify(a));
-      console.log('[DEBUG] b: ' + JSON.stringify(b));
-    },
     getInitialState: function() {
       return {
         groupName: 'shelfGroup' + new Date().getTime()
       };
     },
+    getShelvings: function() {
+      return this.props.book.get('shelves');
+    },
     hasAnyShelvings: function() {
-      return !_(this.props.shelvings).isEmpty();
+      return !this.getShelvings().isEmpty();
     },
     isOnShelf: function(shelf) {
-      return _(this.props.shelvings).findWhere({ id: shelf.id }) !== undefined;
+      return this.getShelvings().findWhere({ id: shelf.get('id') }) !== undefined;
     },
     unshelveButton: function() {
       return (
@@ -31,9 +26,9 @@ define(['shelf','underscore'], function (Shelf, _) {
 
     shelfItems: function() {
       var self = this;
-      return _(this.props.shelves).map(function(shelf){
+      return this.props.shelves.map(function(shelf){
         return (
-          <Shelf shelf={shelf} shelved={self.isOnShelf(shelf)} groupName={self.state.groupName} />
+          <Shelf shelf={shelf} book={self.props.book} shelved={self.isOnShelf(shelf)} groupName={self.state.groupName} />
         );
       });
     },

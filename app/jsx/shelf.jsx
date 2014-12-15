@@ -4,13 +4,13 @@ define([], function () {
   return React.createClass({
     onShelvingChange: function() {
       if (!this.props.shelved) {
-        //
-      } else if (this.props.shelved) {
-        //
+        React.dispatcher.trigger('book:addedToShelf', this.props.book, this.props.shelf);
+      } else {
+        React.dispatcher.trigger('book:removedFromShelf', this.props.book, this.props.shelf);
       }
     },
     inputElement: function() {
-      if (this.props.shelf.exclusive) {
+      if (this.props.shelf.get('exclusive')) {
         return (
           <input type="radio" checked={this.props.shelved} name={this.props.groupName} value={this.props.shelf.id} onChange={this.onShelvingChange} />
         );
@@ -25,7 +25,7 @@ define([], function () {
         <div>
           <label>
             {this.inputElement()}
-            {this.props.shelf.name}
+            {this.props.shelf.get('name')}
           </label>
         </div>
       );

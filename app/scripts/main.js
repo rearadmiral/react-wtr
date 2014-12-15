@@ -12,10 +12,7 @@ require.config({
 		'backbone-associations': '../../bower_components/backbone-associations/backbone-associations',
 		backbone: '../../bower_components/backbone/backbone',
 		react: '../../bower_components/react/react',
-		'react.backbone': '../../bower_components/react.backbone/react.backbone',
-		'backbone-react-component': '../../bower_components/backbone-react-component/lib/component',
-		'react-events': '../../bower_components/react-events/react-events',
-		'react-mixin-manager': '../../bower_components/react-mixin-manager/react-mixin-manager'
+		'react.backbone': '../../bower_components/react.backbone/react.backbone'
 	},
 	shim: {
 		react: {
@@ -24,14 +21,16 @@ require.config({
 	}
 });
 
-require(['app', 'stats', 'react-mixin-manager', 'react-events', 'backbone-associations', 'backbone-react-component'], function (App, Stats) {
+require(['app', 'stats', 'dispatcher', 'backbone-associations', 'react.backbone'], function (App, Stats, Dispatcher) {
 
-	React.renderComponent(
-		App(null ),
+	React.dispatcher = Dispatcher;
+
+	React.render(
+		App(),
 		document.getElementById('react-app')
 	);
-	React.renderComponent(
-		Stats(null ),
+	React.render(
+		Stats(),
 		document.getElementById('react-stats')
 	);
 

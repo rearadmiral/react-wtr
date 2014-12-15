@@ -1,5 +1,5 @@
 'use strict';
-define(['book-model', 'shelf-model'], function(BookModel, ShelfModel) {
+define(['book-model', 'shelf-model', 'dispatcher'], function(BookModel, ShelfModel, Dispatcher) {
 
 	var booksStore = BookModel.all();
 	var shelvesStore = ShelfModel.all();

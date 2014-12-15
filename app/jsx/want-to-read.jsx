@@ -11,19 +11,10 @@ define(['shelf-list', 'underscore', 'stores'], function (ShelfList, _, Stores) {
       this.setState({shelvesVisible: !this.state.shelvesVisible});
     },
     isShelved: function() {
-      return !_.isEmpty(this.state.shelfIds);
-    },
-    shelves: function() {
-      return this.props.book.shelves;
+      return !this.state.shelfIds
     },
     exclusiveShelf: function() {
-      return _(this.props.shelves).findWhere({ exclusive: true });
-    },
-    onUnshelve: function(shelf) {
-
-    },
-    onShelve: function(shelf) {
-  
+      return this.props.shelves.findWhere({ exclusive: true });
     },
     onClearShelvings: function() {
       this.setState({
@@ -44,13 +35,13 @@ define(['shelf-list', 'underscore', 'stores'], function (ShelfList, _, Stores) {
     primaryButtonName: function() {
       var exclusiveShelf = this.exclusiveShelf();
       if (exclusiveShelf) {
-        return exclusiveShelf.name;
+        return exclusiveShelf.get('name');
       }
-      return this.primaryShelf().name;
+      return this.primaryShelf().get('name');
     },
     renderShelfList: function() {
       return (
-        <ShelfList shelves={this.props.shelves} shelvings={this.shelves()} onUnshelve={this.onUnshelve} onShelve={this.onShelve} onClearShelvings={this.onClearShelvings} />
+        <ShelfList shelves={this.props.shelves} book={this.props.book} onClearShelvings={this.onClearShelvings} />
       );
     },
     render: function() {
