@@ -28,8 +28,14 @@ define(['book', 'stores', 'underscore'], function (Book, Stores, _) {
       }
       var shelves = this.state.shelves;
       return this.state.books.map(function(book) {
+
+        var model = {
+          book: book,
+          shelves: shelves
+        };
+
         return (
-          <Book book={book} shelves={shelves} />
+          <Book model={model} />
         );
       });
     },

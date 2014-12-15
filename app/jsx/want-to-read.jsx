@@ -14,10 +14,10 @@ define(['shelf-list', 'underscore', 'stores'], function (ShelfList, _, Stores) {
       return !_.isEmpty(this.state.shelfIds);
     },
     shelves: function() {
-      return this.props.book.get('shelves');
+      return this.props.book.shelves;
     },
     exclusiveShelf: function() {
-      return this.props.shelves.findWhere({ exclusive: true });
+      return _(this.props.shelves).findWhere({ exclusive: true });
     },
     onUnshelve: function(shelf) {
 
@@ -44,9 +44,9 @@ define(['shelf-list', 'underscore', 'stores'], function (ShelfList, _, Stores) {
     primaryButtonName: function() {
       var exclusiveShelf = this.exclusiveShelf();
       if (exclusiveShelf) {
-        return exclusiveShelf.get('name');
+        return exclusiveShelf.name;
       }
-      return this.primaryShelf().get('name');
+      return this.primaryShelf().name;
     },
     renderShelfList: function() {
       return (

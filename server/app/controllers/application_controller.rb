@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = 'http://localhost:9000'
+    headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'GET'
     headers['Access-Control-Allow-Headers'] = '*'
   end

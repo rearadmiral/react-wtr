@@ -11,9 +11,11 @@ require.config({
 		jquery: '../../bower_components/jquery/dist/jquery',
 		'backbone-associations': '../../bower_components/backbone-associations/backbone-associations',
 		backbone: '../../bower_components/backbone/backbone',
-		'react-backbone': '../../bower_components/react-backbone/react-backbone',
-		'react-mixin-manager': '../../bower_components/react-mixin-manager/react-mixin-manager',
-		react: '../../bower_components/react/react'
+		react: '../../bower_components/react/react',
+		'react.backbone': '../../bower_components/react.backbone/react.backbone',
+		'backbone-react-component': '../../bower_components/backbone-react-component/lib/component',
+		'react-events': '../../bower_components/react-events/react-events',
+		'react-mixin-manager': '../../bower_components/react-mixin-manager/react-mixin-manager'
 	},
 	shim: {
 		react: {
@@ -22,7 +24,7 @@ require.config({
 	}
 });
 
-require(['app', 'stats', 'backbone-associations'], function (App, Stats) {
+require(['app', 'stats', 'react-mixin-manager', 'react-events', 'backbone-associations', 'backbone-react-component'], function (App, Stats) {
 
 	React.renderComponent(
 		App(null ),

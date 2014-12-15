@@ -9,7 +9,7 @@
     "underscore": "latest",
     "backbone": "latest",
     "backbone-associations": "latest",
-    "react-backbone": "latest",
+    "backbone-react-component": "latest",
     "jquery": "latest"
   },
   "devDependencies": {}

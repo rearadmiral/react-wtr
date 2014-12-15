@@ -2,22 +2,24 @@
 'use strict';
 define(['want-to-read'], function (WantToRead) {
   return React.createClass({
+    mixins: [Backbone.React.Component.mixin],
     render: function() {
-      var shelves = this.props.shelves;
       var book = this.props.book;
+      var shelves = this.props.shelves;
+
       return (
         <div className="book">
 
-          <img src={book.get('coverImgUrl')}></img>
+          <img src={book.coverImgUrl}></img>
 
           <div>
             <a href="#">
-              {book.get('title')}
+              {book.title}
             </a>
           </div>
 
           <div>
-            by <span className="author">{book.get('author')}</span>
+            by <span className="author">{book.author}</span>
           </div>
 
           <WantToRead book={book} shelves={shelves} />
