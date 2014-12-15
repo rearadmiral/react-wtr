@@ -14,9 +14,9 @@ define(['books', 'stores'], function (Books, Stores) {
 	        });
 	      });
 
-	      React.dispatcher.on('book:removedFromShelf', function(bookJson, shelfJson) {
-	        var backboneBook = self.state.books.findWhere({ id: bookJson.id });
-	        backboneBook.removeFromShelf(shelfJson);
+	      React.dispatcher.on('book:removedFromShelf', function(book, shelf) {
+	        book.removeFromShelf(shelf);
+	        self.setState({books: self.state.books});
 	      });
 	    },
 

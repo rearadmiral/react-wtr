@@ -9,8 +9,6 @@ define(['backbone', 'underscore', 'shelf-model'], function(Backbone, _, ShelfMod
         collectionType: ShelfModel.collectionClass,
         map: function(shelfIdOrIds) {
 
-          console.log('[DEBUG] shelfIdOrIds: ' + JSON.stringify(shelfIdOrIds));
-
           var lookupById = function(shelfId) {
               return ShelfModel.all().findWhere({ id: shelfId });
           };
