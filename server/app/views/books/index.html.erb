@@ -1,11 +1,1 @@
-<script type="text/javascript">
-	
-	var preloadedShelves = <%= render(template: 'shelves/index.json.jbuilder', locals: { shelves: @shelves }).html_safe %>;
-	Stores.shelves.reset(preloadedShelves);
-
-	var preloadedBooks = <%= render(template: 'books/index.json.jbuilder', locals: { books: @books }).html_safe %>;
-	Stores.books.reset(preloadedBooks);	
-
-</script>
-
-<%= react_component 'App' %>
+<%= react_component 'App', {}, { prerender: true } %>

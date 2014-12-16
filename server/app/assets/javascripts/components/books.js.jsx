@@ -2,7 +2,7 @@
 var Books = (function () {
   return React.createClass({
     bookListItems: function() {
-      var shelves = this.props.shelves;
+      var shelves = this.props.shelves
       return this.props.books.map(function(book) {
         return (
           <Book book={book} shelves={shelves} />

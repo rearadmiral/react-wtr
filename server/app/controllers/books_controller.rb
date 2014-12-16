@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @shelves = Shelf.all
-    @books = Book.all
+    @books = Book.all.includes(:shelves)
   end
 
   # GET /books/1

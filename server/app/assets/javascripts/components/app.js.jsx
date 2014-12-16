@@ -7,6 +7,13 @@ var App = (function () {
 	        book.removeFromShelf(shelf);
 	        self.setState({books: self.state.books});
 	      });
+
+	      var perfEnd = new Date().getTime();
+
+	      	var millis = perfEnd - PerfTimingStart;
+
+			console.log('app component mounted after: ' + millis + 'ms');	
+	      
 	    },
 
 	    getInitialState: function() {

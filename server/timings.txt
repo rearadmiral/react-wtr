@@ -1,0 +1,26 @@
+ CSR
+
+Rails Time
+  Rendered books/index.json.jbuilder (46.1ms)
+  Rendered books/index.html.erb within layouts/application (54.6ms)
+ 
+Browser Time:
+timing.js?body=1:11 docOnLoad fired after: 104ms
+app.js?body=1:16 app component mounted after: 239ms
+
+CURL: 0.202s
+
+========== 
+
+ SSR
+
+ Rails Time
+ Rendered books/index.json.jbuilder (47.2ms)
+ Rendered books/index.html.erb within layouts/application (50.3ms)
+
+ Browser Time
+ docOnLoad fired after: 142ms
+
+ app component mounted after: 271ms
+
+

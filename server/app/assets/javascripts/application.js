@@ -12,14 +12,15 @@
 //
 //= require underscore
 //= require jquery
-//= require jquery_ujs
-//= require react
-//= require react_ujs
+//= require timing
 //= require backbone
 //= require backbone-associations
 //= require shelf-model
 //= require book-model
 //= require stores
+//= require jquery_ujs
+//= require react
+//= require react_ujs
 //= require_tree .
 //= require main
 
