@@ -2,13 +2,55 @@
 <html>
 <head>
   <title>Goodreads</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+	<header>
+	        <div class="logo">
+	          g
+	        </div>
+	        <div id="search">
+	          <input type="text" placeholder="book, author, genre, friends..."></input>
+	        </div>
+	      </header>
 
-</body>
+	      <div id="nav-and-main">
+	        <nav>
+	          <ul>
+	            <li><a class="selected" href="books">Books</a></li>
+	            <li>Groups</li>
+	            <li>Explore</li>
+	            <li><a href="admin">Admin</a></li>
+	          </ul>
+
+	          <div ui-view="sidebar"></div>
+	        </nav>
+
+	        <main>
+
+	          <section class="content">
+	          	<%= yield %>
+	          </section>
+
+	        </main>
+	      </div>
+
+	      <footer>
+	        <ul>
+	          <li>about</li>
+	          <li>advertise</li>
+	          <li>authors</li>
+	          <li>jobs</li>
+	          <li>blog</li>
+	          <li>privacy</li>
+	        </ul>
+
+	        <p id="react-stats">
+	        </p>
+	      </footer>
+
+	</body>
 </html>

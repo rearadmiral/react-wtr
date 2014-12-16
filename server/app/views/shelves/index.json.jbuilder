@@ -1,3 +1,3 @@
-json.array!(@shelves) do |shelf|
+json.array!(shelves) do |shelf|
 	json.extract! shelf, :id, :name, :exclusive
 end

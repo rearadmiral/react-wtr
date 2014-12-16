@@ -10,7 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require underscore
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require react
+//= require react_ujs
+//= require backbone
+//= require backbone-associations
+//= require shelf-model
+//= require book-model
+//= require stores
 //= require_tree .
+//= require main
+
+
