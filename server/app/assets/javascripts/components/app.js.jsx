@@ -17,9 +17,11 @@ var App = (function () {
 	    },
 
 	    getInitialState: function() {
+	    	Stores.shelves.reset(this.props.shelves);
+	      	Stores.books.reset(this.props.books);
 	      return {
-	        books: Stores.books,
-	        shelves: Stores.shelves
+	        shelves: Stores.shelves,
+	        books: Stores.books
 	      };
 	    },
 

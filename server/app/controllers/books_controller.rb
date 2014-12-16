@@ -3,8 +3,21 @@ class BooksController < ApplicationController
 
   # GET /books.json
   def index
-    @shelves = Shelf.all
-    @books = Book.all.includes(:shelves)
+    @shelves = Shelf.all.map do |shelf|
+      {
+        id: shelf.id,
+        name: shelf.name,
+        exclusive: shelf.exclusive
+      }
+    end
+    @books = Book.all.includes(:shelves).map do |book|
+      {
+        id: book.id,
+        title: book.title,
+        coverImgUrl: book.cover_img_url,
+        shelves: book.shelves.map(&:id)
+      }
+    end
   end
 
   # GET /books/1
