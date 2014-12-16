@@ -9,14 +9,6 @@ Run it
 
    > $> rails s
 
-   > $> cd ../
-
-   > $> npm install
-   
-   > $> bower install
-   
-   > $> grunt serve
+   > $> http://localhost:3000
 
 
-
- Bam!
